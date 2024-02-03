@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfiniteJumpMod", "InfiniteJumpMod.csproj", "{AD8A7B21-A452-421B-8504-A9BA3B4804A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Debug|x64.ActiveCfg = Debug|x64
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Debug|x64.Build.0 = Debug|x64
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Debug|x86.ActiveCfg = Debug|x86
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Debug|x86.Build.0 = Debug|x86
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Release|Any CPU.ActiveCfg = Release|x64
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Release|Any CPU.Build.0 = Release|x64
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Release|x64.Build.0 = Release|Any CPU
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Release|x86.ActiveCfg = Release|x86
+		{AD8A7B21-A452-421B-8504-A9BA3B4804A5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1EB15330-C648-46D7-86CF-714CFDDF7036}
+	EndGlobalSection
+EndGlobal
