@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Numerics;
+using System.Runtime.InteropServices.Marshalling;
 using Celeste64;
 namespace InfiniteJumpMod
 {
@@ -31,6 +32,16 @@ namespace InfiniteJumpMod
             ClientHandler.ClientStart("141.148.63.115", 25566,ref Changes);
         }
 
+        public override void OnWorldLoaded(World world)
+        {
+            foreach (var player in Players.Values)
+            {
+                world.Add(player);
+
+            }
+            base.OnWorldLoaded(world);
+        }
+
         public override void Update(float deltaTime)
         {
             currentMap = Map?.Name;
@@ -48,47 +59,50 @@ namespace InfiniteJumpMod
             }
             
             
-            
+            // TODO
+            // Rotation
             if (Changes.Count > 0)
             {
                 Message? message = (Message)Changes.Pop()!;
-                var player = _player;
-                var validMove = true;
-                if (player != null && message.UserID != Id)
+                if (message.UserID != Id)
                 {
                     Console.WriteLine(message.ToString());
-                    var climber = new Climbers();
+
                     if (Players.ContainsKey(message.UserID))
                     {
-                        if (Player2Packet.ContainsKey(message.UserID))
+                        // Update existing Climber
+                        long longValue = long.Parse(message.PacketNum);
+                        if (Player2Packet[message.UserID] <= longValue)
                         {
-                            long longValue = long.Parse(message.PacketNum);
-
-                            if (Player2Packet[message.UserID] > longValue)
+                            if (message.CurrentMap == currentMap)
                             {
-                                validMove = false;
-                            }
-                            else
-                            {
-                                World?.Destroy(Players[message.UserID]);
-                                Players.Remove(message.UserID);
+                                var climber = Players[message.UserID];
+                                climber.Position = message.PosVec;
+                                Players[message.UserID] = climber;
+                                Player2Packet[message.UserID] = longValue;
                             }
                         }
                     }
-
-                    if (message.CurrentMap == currentMap && validMove)
+                    else
                     {
-                        climber.Position = message.PosVec;
-                        Players[message.UserID] = climber;
-                        World?.Add(climber);
-                        long longValue = long.Parse(message.PacketNum);
-
-                        Player2Packet[message.UserID] = longValue;
+                        // Add new Climber
+                        if (message.CurrentMap == currentMap)
+                        {
+                            var newClimber = new Climbers
+                            {
+                                Position = message.PosVec
+                            };
+                            var addedClimber = World?.Add(newClimber);
+                            if (addedClimber != null)
+                            {
+                                Players[message.UserID] = addedClimber;
+                                long longValue = long.Parse(message.PacketNum);
+                                Player2Packet[message.UserID] = longValue;
+                            }
+                        }
                     }
                 }
             }
-            
-            
             
 		}
     }
